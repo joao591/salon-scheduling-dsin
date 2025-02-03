@@ -27,8 +27,11 @@
                     @endif
     
                     <!-- Menu do Cliente -->
-                    @if(Auth::user() && Auth::user()->role === 'user' && Auth::user()->cliente)
-                        <x-nav-link :href="route('agendamentos.index', ['id' => Auth::user()->cliente->id])" :active="request()->routeIs('agendamentos.index', ['id' => Auth::user()->cliente->id])">
+                    @if(Auth::user() && Auth::user()->role === 'user')
+                    @php
+                        $cliente = \App\Models\Cliente::where('email', Auth::user()->email)->first();
+                    @endphp
+                        <x-nav-link :href="route('agendamentos.index', ['id' => $cliente->id])" :active="request()->routeIs('agendamentos.index', ['id' => $cliente->id])">
                             {{ __('Agendamentos') }}
                         </x-nav-link>
                     @endif

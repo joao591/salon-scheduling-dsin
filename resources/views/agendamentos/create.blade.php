@@ -1,8 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+
+@section('title', 'Cadastro de Agendamento')
 <div class="container mx-auto p-6">
     <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">Criar Agendamento</h2>
+
+    <!-- Exibição de avisos -->
+    @if(session('aviso'))
+        <div class="bg-yellow-100 text-yellow-700 p-4 rounded mb-4">
+            {{ session('aviso') }}
+        </div>
+    @endif
 
     <form  method="POST" class="space-y-6">
         @csrf
