@@ -32,15 +32,15 @@ class AgendamentoController extends Controller
 
         // Verificar se o cliente já tem agendamento para a mesma semana
         $cliente = Cliente::findOrFail($request->cliente_id);
-        $semana_agendada = Carbon::parse($request->data_agendamento)->weekOfYear;
-        $agendamentoExistente = Agendamento::where('cliente_id', $cliente->id)
-            ->whereBetween('data_agendamento', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
-            ->exists();
+        // $semana_agendada = Carbon::parse($request->data_agendamento)->weekOfYear;
+        // $agendamentoExistente = Agendamento::where('cliente_id', $cliente->id)
+        //     ->whereBetween('data_agendamento', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+        //     ->exists();
 
-        if ($agendamentoExistente) {
-            // Sugere o mesmo dia da semana para o próximo agendamento
-            return back()->with('aviso', 'Você tem um agendamento na mesma semana, seria interessante agendar para o mesmo dia.');
-        }
+        // if ($agendamentoExistente) {
+        //     // Sugere o mesmo dia da semana para o próximo agendamento
+        //     return back()->with('aviso', 'Você tem um agendamento na mesma semana, seria interessante agendar para o mesmo dia.');
+        // }
 
         // Criar o agendamento
         $agendamento = Agendamento::create([
